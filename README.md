@@ -1,3 +1,10 @@
+# To run this repository run the following:
+- flutter clean
+- flutter pub get
+- dart run build_runner watch -d
+- press F5 or run in manually
+
+
 # **Flutter Skill showcase**
 
 #Libraries & Tools
