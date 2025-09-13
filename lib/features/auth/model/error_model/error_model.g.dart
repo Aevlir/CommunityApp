@@ -1,0 +1,18 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'error_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_ErrorModel _$ErrorModelFromJson(Map<String, dynamic> json) => _ErrorModel(
+  errorEmail: json['errorEmail'] as String?,
+  errorPassword: json['errorPassword'] as String?,
+);
+
+Map<String, dynamic> _$ErrorModelToJson(_ErrorModel instance) =>
+    <String, dynamic>{
+      'errorEmail': instance.errorEmail,
+      'errorPassword': instance.errorPassword,
+    };

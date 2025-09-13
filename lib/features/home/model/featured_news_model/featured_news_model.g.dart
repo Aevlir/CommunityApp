@@ -1,0 +1,23 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'featured_news_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_FeaturedNewsModel _$FeaturedNewsModelFromJson(Map<String, dynamic> json) =>
+    _FeaturedNewsModel(
+      imageUrl: json['imageUrl'] as String?,
+      source: json['source'] as String?,
+      headline: json['headline'] as String?,
+      isBreakingNews: json['isBreakingNews'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$FeaturedNewsModelToJson(_FeaturedNewsModel instance) =>
+    <String, dynamic>{
+      'imageUrl': instance.imageUrl,
+      'source': instance.source,
+      'headline': instance.headline,
+      'isBreakingNews': instance.isBreakingNews,
+    };

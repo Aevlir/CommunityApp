@@ -1,0 +1,24 @@
+
+analyzer:
+  errors:
+    avoid_print: warning
+    prefer_single_quotes: error
+    prefer_const_constructors: warning
+    prefer_const_constructors_in_immutables: warning
+    missing_whitespace_between_adjacent_strings: warning
+    unused_element: warning
+    prefer_final_fields: warning
+    use_key_in_widget_constructors: warning
+    always_declare_return_types: warning
+    invalid_annotation_target: ignore
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    use_key_in_widget_constructors: true
+    avoid_function_literals_in_foreach_calls: false
+    prefer_single_quotes: true
+    prefer_final_locals: true
+    always_declare_return_types: true
+    avoid_print: true
+    prefer_const_constructors: true
