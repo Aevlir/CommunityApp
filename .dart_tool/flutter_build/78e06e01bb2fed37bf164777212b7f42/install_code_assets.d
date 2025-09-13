@@ -1,0 +1,1 @@
+ /Users/solenergy/Documents/GitHub/CommunityApp/.dart_tool/flutter_build/78e06e01bb2fed37bf164777212b7f42/native_assets.json: 

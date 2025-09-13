@@ -1,0 +1,90 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_PostModel _$PostModelFromJson(Map<String, dynamic> json) => _PostModel(
+  contentModel: json['contentModel'] == null
+      ? null
+      : ContentModel.fromJson(json['contentModel'] as Map<String, dynamic>),
+  communityNewsModel: json['communityNewsModel'] == null
+      ? null
+      : CommunityNewsModel.fromJson(
+          json['communityNewsModel'] as Map<String, dynamic>,
+        ),
+  postType: $enumDecodeNullable(_$PostTypeEnumMap, json['postType']),
+);
+
+Map<String, dynamic> _$PostModelToJson(_PostModel instance) =>
+    <String, dynamic>{
+      'contentModel': instance.contentModel,
+      'communityNewsModel': instance.communityNewsModel,
+      'postType': _$PostTypeEnumMap[instance.postType],
+    };
+
+const _$PostTypeEnumMap = {
+  PostType.news: 'news',
+  PostType.community: 'community',
+  PostType.publicService: 'publicService',
+};
+
+_ContentModel _$ContentModelFromJson(Map<String, dynamic> json) =>
+    _ContentModel(
+      imageUrl: json['imageUrl'] as String?,
+      videoUrl: json['videoUrl'] as String?,
+      source: json['source'] as String?,
+      timePosted: json['timePosted'] as String?,
+      headline: json['headline'] as String?,
+    );
+
+Map<String, dynamic> _$ContentModelToJson(_ContentModel instance) =>
+    <String, dynamic>{
+      'imageUrl': instance.imageUrl,
+      'videoUrl': instance.videoUrl,
+      'source': instance.source,
+      'timePosted': instance.timePosted,
+      'headline': instance.headline,
+    };
+
+_PublicServiceModel _$PublicServiceModelFromJson(Map<String, dynamic> json) =>
+    _PublicServiceModel(
+      imageUrl: json['imageUrl'] as String?,
+      videoUrl: json['videoUrl'] as String?,
+      source: json['source'] as String?,
+      timePosted: json['timePosted'] as String?,
+      headline: json['headline'] as String?,
+    );
+
+Map<String, dynamic> _$PublicServiceModelToJson(_PublicServiceModel instance) =>
+    <String, dynamic>{
+      'imageUrl': instance.imageUrl,
+      'videoUrl': instance.videoUrl,
+      'source': instance.source,
+      'timePosted': instance.timePosted,
+      'headline': instance.headline,
+    };
+
+_CommunityNewsModel _$CommunityNewsModelFromJson(Map<String, dynamic> json) =>
+    _CommunityNewsModel(
+      imageUrl: json['imageUrl'] as String?,
+      videoUrl: json['videoUrl'] as String?,
+      timePosted: json['timePosted'] as String?,
+      caption: json['caption'] as String?,
+      profileImageUrl: json['profileImageUrl'] as String?,
+      name: json['name'] as String?,
+      likes: (json['likes'] as num?)?.toInt(),
+      comments: (json['comments'] as num?)?.toInt(),
+      shares: (json['shares'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$CommunityNewsModelToJson(_CommunityNewsModel instance) =>
+    <String, dynamic>{
+      'imageUrl': instance.imageUrl,
+      'videoUrl': instance.videoUrl,
+      'timePosted': instance.timePosted,
+      'caption': instance.caption,
+      'profileImageUrl': instance.profileImageUrl,
+      'name': instance.name,
+      'likes': instance.likes,
+      'comments': instance.comments,
+      'shares': instance.shares,
+    };

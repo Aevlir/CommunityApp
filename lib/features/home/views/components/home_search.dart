@@ -1,14 +1,27 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test/core/shared/constants/color/color.dart';
 import 'package:test/core/shared/constants/number.dart/size.dart';
+import 'package:test/features/auth/view_models/auth_notifier/auth_notifier.dart';
 
-class HomeSearch extends HookWidget {
+class HomeSearch extends HookConsumerWidget {
   const HomeSearch({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    void onLogout() {
+      ref
+          .read(authNotifierProvider.notifier)
+          .logout(
+            onLogout: () {
+              context.go('/login');
+            },
+          );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: TestAppSizes.paddingXl),
       child: Row(
@@ -23,10 +36,15 @@ class HomeSearch extends HookWidget {
             ),
           ),
           const SizedBox(width: 20),
-          Image.asset(
-            'assets/icons/test_notifications.png',
-            width: TestAppSizes.iconMd,
-            height: TestAppSizes.iconMd,
+          GestureDetector(
+            onTap: () {
+              onLogout();
+            },
+            child: Image.asset(
+              'assets/icons/test_notifications.png',
+              width: TestAppSizes.iconMd,
+              height: TestAppSizes.iconMd,
+            ),
           ),
         ],
       ),

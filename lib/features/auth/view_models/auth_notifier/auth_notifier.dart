@@ -5,6 +5,7 @@ import 'package:test/core/services/session_service/session_notifier.dart';
 import 'package:test/core/utils/shared_pref_util/shared_pref_util.dart';
 import 'package:test/features/auth/api/auth_api.dart';
 import 'package:test/features/auth/model/user_model/user_model.dart';
+import 'package:test/features/auth/view_models/user_notifier/user_notifier.dart';
 
 part 'auth_notifier.g.dart';
 
@@ -37,6 +38,14 @@ class AuthNotifier extends _$AuthNotifier {
       });
 
       if (response.token != null) {
+        _prefs.setValue(tokenKey, response.token);
+        _prefs.setValue(isLoggedInKey, true);
+
+        ref
+            .read(userNotifierProvider.notifier)
+            .updateUserData(token: response.token);
+
+        state = AsyncValue.data(response);
         onLogin();
       }
     } catch (e, st) {
@@ -60,10 +69,22 @@ class AuthNotifier extends _$AuthNotifier {
       if (response.token != null) {
         _prefs.setValue(tokenKey, response.token);
         _prefs.setValue(isLoggedInKey, true);
+        ref
+            .read(userNotifierProvider.notifier)
+            .updateUserData(token: response.token);
         onSignUp();
       }
     } catch (e, st) {
       state = AsyncValue.error(e, st);
     }
+  }
+
+  Future<void> logout({required VoidCallback onLogout}) async {
+    if (state is AsyncLoading) return;
+    state = const AsyncValue.loading();
+    await Future.delayed(const Duration(seconds: 1));
+    await _prefs.remove(tokenKey);
+    state = const AsyncValue.data(UserModel());
+    onLogout();
   }
 }

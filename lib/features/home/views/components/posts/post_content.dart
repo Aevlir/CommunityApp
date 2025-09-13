@@ -34,7 +34,19 @@ class ContentPost extends StatelessWidget {
               Expanded(child: Image.asset(data.imageUrl!, fit: BoxFit.cover)),
             ],
           ),
-        if (hasVideo) Image.asset(data.videoUrl!, fit: BoxFit.cover),
+        if (hasVideo)
+          Column(
+            children: [
+              TestText(
+                text: data.headline ?? '',
+                fontWeight: FontWeight.bold,
+                fontSize: TestAppSizes.fontLg,
+                color: TestColors.titleColor,
+                overflow: TextOverflow.visible,
+              ),
+              Image.asset(data.videoUrl!, fit: BoxFit.cover),
+            ],
+          ),
         PostContentFooter(data: data),
       ],
     );

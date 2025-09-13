@@ -31,7 +31,7 @@ class HomeTabBar extends StatelessWidget {
         const HomeTab(tabLabel: 'News', iconPath: 'assets/icons/test_news.png'),
         const HomeTab(
           tabLabel: 'Public Service',
-          iconPath: 'assets/icons/test_community.png',
+          iconPath: 'assets/icons/test_public.png',
         ),
         const HomeTab(
           tabLabel: 'Community',

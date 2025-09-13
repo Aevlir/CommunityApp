@@ -25,6 +25,7 @@ class SignUpPassword extends HookConsumerWidget {
     final errorState = ref.watch(errorNotifierProvider);
     final userState = ref.watch(userNotifierProvider);
     final userNotifier = ref.read(userNotifierProvider.notifier);
+    final isLoading = ref.watch(authNotifierProvider).isLoading;
 
     // Controllers
     final emailController = useTextEditingController();
@@ -102,7 +103,7 @@ class SignUpPassword extends HookConsumerWidget {
                   );
             },
             text: 'Sign Up',
-            isLoading: false,
+            isLoading: isLoading,
             isDisabled: errorState.errorPassword != null,
           ),
           Agreements(value: false, onChanged: (bool? value) {}),

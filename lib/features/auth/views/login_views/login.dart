@@ -8,6 +8,7 @@ import 'package:test/core/shared/constants/number.dart/size.dart';
 import 'package:test/core/widgets/test_button.dart';
 import 'package:test/core/widgets/test_sub_layout.dart';
 import 'package:test/core/widgets/test_text.dart';
+import 'package:test/features/auth/view_models/auth_notifier/auth_notifier.dart';
 import 'package:test/features/auth/views/login_views/components/agreements.dart';
 import 'package:test/features/auth/views/login_views/components/login_fields.dart';
 import 'package:test/features/auth/views/login_views/components/login_third_party_button.dart';
@@ -23,6 +24,7 @@ class Login extends HookConsumerWidget {
     final routeState = ref.read(testRouteProvider);
     final errorState = ref.watch(errorNotifierProvider);
     final userNotifier = ref.read(userNotifierProvider.notifier);
+    final isLoading = ref.watch(authNotifierProvider).isLoading;
 
     // Controllers
     final emailController = useTextEditingController();
@@ -31,6 +33,18 @@ class Login extends HookConsumerWidget {
     // Functions
     void navigateToSignUp() {
       routeState.go(AppRoute.signUp.path);
+    }
+
+    void login() {
+      ref
+          .read(authNotifierProvider.notifier)
+          .login(
+            email: emailController.text,
+            password: passwordController.text,
+            onLogin: () {
+              routeState.go(AppRoute.home.path);
+            },
+          );
     }
 
     return TestSubLayout(
@@ -92,9 +106,11 @@ class Login extends HookConsumerWidget {
             ),
           ),
           TestButton(
-            onPressed: () {},
+            onPressed: () {
+              login();
+            },
             text: 'Login',
-            isLoading: false,
+            isLoading: isLoading,
             isDisabled:
                 errorState.errorEmail != null ||
                 errorState.errorPassword != null ||

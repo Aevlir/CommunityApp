@@ -13,11 +13,15 @@ class UserNotifier extends _$UserNotifier {
   }
 
   // Update user data with reactive validation
-  void updateUserData({String? email, String? password}) {
+  void updateUserData({String? email, String? password, String? token}) {
     state = state.copyWith(
       email: email ?? state.email,
       password: password ?? state.password,
     );
+
+    if (token != null) {
+      state = state.copyWith(token: token);
+    }
 
     if (email != null) {
       if (email.isEmpty) {
